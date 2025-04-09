@@ -45,37 +45,78 @@
             line-height: 1.8;
         }
         
-        .gallery {
+        .gallery-section {
+            margin-bottom: 50px;
+        }
+        
+        .text-section {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
+            margin-bottom: 20px;
         }
         
         .gallery-item {
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             background-color: white;
             cursor: pointer;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
         }
         
         .gallery-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
         
-        .gallery-item img {
+        .img-container {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .img-container img {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
             object-fit: cover;
-            aspect-ratio: 3/2;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         
         .item-caption {
-            padding: 8px;
+            padding: 10px;
             text-align: center;
             font-size: 0.9rem;
+            background-color: white;
+        }
+        
+        .standalone-row {
+            margin-bottom: 20px;
+        }
+        
+        .standalone-item {
+            height: 250px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
         }
         
         footer {
@@ -155,18 +196,48 @@
         .close-modal:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
+        
+        .final-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .final-row-center {
+            grid-column: 1 / span 3;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .final-row-center .gallery-item {
+            width: calc(33.33% - 14px);
+            max-width: 380px;
+        }
 
         @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 15px;
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .final-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .final-row-center {
+                grid-column: 1 / span 2;
+            }
+            
+            .final-row-center .gallery-item {
+                width: calc(50% - 10px);
             }
             
             h1 {
                 font-size: 2rem;
             }
             
-            .description {
+            .description, .text-section {
                 font-size: 1rem;
             }
             
@@ -176,9 +247,22 @@
         }
         
         @media (max-width: 480px) {
-            .gallery {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 10px;
+            .gallery-grid, .final-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .final-row-center {
+                grid-column: 1;
+                flex-direction: column;
+            }
+            
+            .final-row-center .gallery-item {
+                width: 100%;
+            }
+            
+            .gallery-item, .standalone-item {
+                height: 220px;
             }
             
             h1 {
@@ -200,6 +284,10 @@
                 width: 35px;
                 height: 35px;
             }
+            
+            .text-section {
+                padding: 20px 15px;
+            }
         }
     </style>
 </head>
@@ -213,98 +301,220 @@
             <p>Тук ще откриете снимки и моменти, които разказват историята на нашето пътуване до 10-ти клас. Все още не сме приключили с дългия път, но тези спомени ни напомнят как изминахме първите стъпки в училището и как сме преминали през различни моменти заедно. Надяваме се, че ще се усмихнете, като се върнете към тях.</p>
         </div>
         
-        <div class="gallery">
-            <div class="gallery-item">
-                <img src="1.jpg" alt="Project Image 1">
-                <div class="item-caption"></div>
+        <div class="gallery-section">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="81.jpg" alt="Допълнителна снимка 1">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="82.jpg" alt="Допълнителна снимка 2">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="83.jpg" alt="Допълнителна снимка 3">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="84.jpg" alt="Допълнителна снимка 4">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="85.jpg" alt="Допълнителна снимка 5">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="86.jpg" alt="Допълнителна снимка 6">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="87.jpg" alt="Допълнителна снимка 7">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="88.jpg" alt="Допълнителна снимка 8">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="89.jpg" alt="Допълнителна снимка 9">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="810.jpg" alt="Допълнителна снимка 10">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="811.jpg" alt="Допълнителна снимка 11">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="812.jpg" alt="Допълнителна снимка 12">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="813.jpg" alt="Допълнителна снимка 13">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="814.jpg" alt="Допълнителна снимка 14">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="815.jpg" alt="Допълнителна снимка 15">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="816.jpg" alt="Допълнителна снимка 16">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="817.jpg" alt="Допълнителна снимка 17">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="818.jpg" alt="Допълнителна снимка 18">
+                    </div>
+                </div>
             </div>
-            
-            <div class="gallery-item">
-                <img src="2.jpg" alt="Project Image 2">
-                <div class="item-caption"></div>
+            <div class="final-row-center">
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="819.jpg" alt="Допълнителна снимка 19">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="820.jpg" alt="Допълнителна снимка 20">
+                    </div>
+                </div>
             </div>
-            
-            <div class="gallery-item">
-                <img src="3.jpg" alt="Project Image 3">
-                <div class="item-caption"></div>
+        </div>
+        
+        <div class="text-section">
+            <p>Още от самото начало в 8. клас усетихме, че сме паснали. Сближихме се бързо, сякаш се познаваме от години. Споделяме общи интереси, смях и незабравими моменти. Хуморът ни е еднакъв, а настроението - винаги приповдигано. Заедно сме не просто съученици, а приятели, които правят всяко училищно преживяване по-специално.</p>
+        </div>
+        
+        <div class="gallery-section">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="1.jpg" alt="Снимка от класа 1">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="2.jpg" alt="Снимка от класа 2">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="3.jpg" alt="Снимка от класа 3">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="4.jpg" alt="Снимка от класа 4">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="5.jpg" alt="Снимка от класа 5">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="6.jpg" alt="Снимка от класа 6">
+                    </div>
+                </div>
             </div>
-            
-            <div class="gallery-item">
-                <img src="4.jpg" alt="Project Image 4">
-                <div class="item-caption"></div>
+        </div>
+        
+        <div class="text-section">
+            <p>Първите дни в гимназията бяха изпълнени с вълнение и несигурност. Новите приятелства и учители ни помогнаха да се адаптираме бързо. Спомняте ли си първата ни екскурзия заедно? Или онези стресиращи първи изпити? С всяко предизвикателство ставахме по-силни като клас, а общите спомени ни сближиха още повече.</p>
+        </div>
+        
+        <div class="gallery-section">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="7.jpg" alt="Снимка от класа 7">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="8.jpg" alt="Снимка от класа 8">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="9.jpg" alt="Снимка от класа 9">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="11.jpg" alt="Снимка от класа 11">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="12.jpg" alt="Снимка от класа 12">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="13.jpg" alt="Снимка от класа 13">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="14.jpg" alt="Снимка от класа 14">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="15.jpg" alt="Снимка от класа 15">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-container">
+                        <img src="16.jpg" alt="Снимка от класа 16">
+                    </div>
+                </div>
             </div>
-            
-            <div class="gallery-item">
-                <img src="5.jpg" alt="Project Image 5">
-                <div class="item-caption"></div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="6.jpg" alt="Project Image 6">
-                <div class="item-caption"></div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="7.jpg" alt="Project Image 7">
-                <div class="item-caption"></div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="8.jpg" alt="Project Image 8">
-                <div class="item-caption"></div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="9.jpg" alt="Project Image 9">
-                <div class="item-caption"></div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="10.jpg" alt="Project Image 10">
-                <div class="item-caption"></div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="11.jpg" alt="Project Image 11">
-                <div class="item-caption"></div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="12.jpg" alt="Project Image 12">
-                <div class="item-caption"></div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="13.jpg" alt="Project Image 13">
-                <div class="item-caption"></div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="14.jpg" alt="Project Image 14">
-                <div class="item-caption"></div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="15.jpg" alt="Project Image 15">
-                <div class="item-caption"></div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="16.jpg" alt="Project Image 16">
-                <div class="item-caption"></div>
-            </div>
+        </div>
+        
+        <div class="text-section">
+            <p>Вече в 10-ти клас, ние продължаваме да създаваме спомени заедно. От уроците в класната стая до празниците и състезанията - всеки момент добавя нова страница към нашата обща история. Тази галерия е само част от многото преживявания, които споделихме, и с нетърпение очакваме новите приключения, които ни предстоят в следващите години.</p>
         </div>
         
         <div id="imageModal" class="modal">
             <span class="close-modal">&times;</span>
             <div class="modal-content">
-                <img id="modalImage" class="modal-image" src="" alt="Enlarged Image">
+                <img id="modalImage" class="modal-image" src="" alt="Увеличена снимка">
                 <div id="modalCaption" class="modal-caption"></div>
             </div>
         </div>
         
         <footer>
-            <p>Направен от Сервет 10а</p>
+            <p>Направен от Сервет М. Ибрям 10а</p>
         </footer>
     </div>
 
@@ -322,7 +532,7 @@
                 const caption = this.querySelector('.item-caption');
                 
                 modalImg.src = img.src;
-                modalCaption.textContent = caption.textContent;
+                modalCaption.textContent = caption ? caption.textContent : '';
                 
                 modal.classList.add('show');
                 
